@@ -1,4 +1,4 @@
-def apply_operator(a, b, op):
+def operation(a, b, op):
     if op == '+':
         return a + b
     elif op == '-':
@@ -19,7 +19,7 @@ def calculator(l):
         if l[i] in ('*', '/'):
             left = float(l[i-1])
             right = float(l[i+1])
-            result = apply_operator(left, right, l[i])
+            result = operation(left, right, l[i])
             l[i-1:i+2] = [result]
             i -= 1
         else:
@@ -30,11 +30,11 @@ def calculator(l):
     while i < len(l):
         op = l[i]
         num = float(l[i+1])
-        result = apply_operator(result, num, op)
+        result = operation(result, num, op)
         i += 2
     
     return result
 
-expr = input()
-l = expr.split()
+a = input()
+l = a.split()
 print("Result:", calculator(l))
