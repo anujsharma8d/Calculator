@@ -1,3 +1,6 @@
+import sympy as sp
+x = sp.symbols('x')
+
 def operation(a, b, op):
     if op == '+':
         return a + b
@@ -12,8 +15,8 @@ def operation(a, b, op):
             raise ZeroDivisionError("Division by zero")
     else:
         raise ValueError("Invalid operator")
-
 def calculator(l):
+
     i = 0
     while i < len(l):
         if l[i] in ('*', '/'):
@@ -35,6 +38,22 @@ def calculator(l):
     
     return result
 
-a = input()
-l = a.split()
-print("Result:", calculator(l))
+print("0. Basic Calculation")
+print("1. Differentiation")
+print("2. Integration")
+choice = input("Enter choice (0/1/2): ")
+
+if (choice=='1' or choice=='2'):
+    expression = input("Enter function in terms of x: ")
+    expr = sp.sympify(expression)
+    if choice == '1':
+        result = sp.diff(expr, x)
+        print(result)
+    elif choice == '2':
+        result = sp.integrate(expr, x)
+        print(result)
+
+elif (choice == '0'):
+    a = input()
+    l = a.split()
+    print("Result:", calculator(l))
